@@ -1,3 +1,7 @@
+<?php
+require_once '../config.php';
+$debugInfo = getConnectionDebugInfo();
+?>
 <!DOCTYPE html>
 <html lang="nl">
 <head>
@@ -8,6 +12,14 @@
     <script src="../scripts/scripts.js" defer></script>
 </head>
 <body>
-    
+    <div class="db-debugger">
+        <div class="status status-<?php echo $debugInfo['status']; ?>">
+            <span class="status-indicator"></span>
+            <?= 'DB: ' . ucfirst($debugInfo['status']); ?>
+        </div>
+        <div class="info">
+    <main>
+        
+    </main>
 </body>
 </html>

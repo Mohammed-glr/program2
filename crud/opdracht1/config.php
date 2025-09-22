@@ -11,12 +11,33 @@ $options = [
     PDO::ATTR_EMULATE_PREPARES   => false,
 ];
 
+$connectionStatus = 'disconnected';
+$connectionMessage = '';
+$connectionTime = '';
+
 try {
-    $pdo = new PDO("mysql:host=$server;dbName=$dbName", $username, $password, $options);
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $startTime = microtime(true);
+    $pdo = new PDO("mysql:host=$server;dbname=$dbName", $username, $password, $options);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    
+    $endTime = microtime(true);
+    $connectionStatus = 'connected';
+    $connectionMessage = 'Database connected successfully';
+    
 } catch (PDOException $e) {
-    echo "Connection failed: " . $e->getMessage();
+    $connectionStatus = 'failed';
+    $connectionMessage = "Connection failed: " . $e->getMessage();
+    echo $connectionMessage;
     die();
+}
+
+function getConnectionDebugInfo() {
+    global $connectionStatus, $connectionMessage;
+    
+    return [
+        'status' => $connectionStatus,
+        'message' => $connectionMessage,
+    ];
 }
 
 
