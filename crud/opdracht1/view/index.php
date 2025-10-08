@@ -2,7 +2,7 @@
 require_once '../config.php';
 $debugInfo = getConnectionDebugInfo();
 
-$stmt = $pdo->query('SELECT * FROM management_todos ORDER BY id ASC');
+$stmt = $pdo->query('SELECT * FROM todos ORDER BY id ASC');
 $items = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 <!DOCTYPE html>

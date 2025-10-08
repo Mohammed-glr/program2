@@ -4,7 +4,7 @@ $debugInfo = getConnectionDebugInfo();
 
 $id = isset($_GET['id']) ? (int) $_GET['id'] : null;
 if ($id) {
-    $stmt = $pdo->prepare('SELECT * FROM management_todos WHERE id = :id');
+    $stmt = $pdo->prepare('SELECT * FROM todos WHERE id = :id');
     $stmt->execute([':id' => $id]);
     $item = $stmt->fetch(PDO::FETCH_ASSOC);
 }
