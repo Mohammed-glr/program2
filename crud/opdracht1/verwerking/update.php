@@ -6,12 +6,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $id = $_POST['id'];
     $title = $_POST['title'];
     $description = $_POST['description'];
-    $is_completed = isset($_POST['is_completed']) ? true : false;
-    $due_date = $_POST['due_date'] ? $_POST['due_date'] : null;
+    $is_completed = isset($_POST['is_completed']) ? 1 : 0;
+    $due_date = !empty($_POST['due_date']) ? $_POST['due_date'] : null;
     $updated_at = date('Y-m-d H:i:s');
-    $created_at = date('Y-m-d H:i:s');
 
-    $sql = "UPDATE management_todos 
+    $sql = "UPDATE todos 
             SET title = :title, 
                 description = :description, 
                 is_completed = :is_completed, 

@@ -3,7 +3,7 @@
 
 require_once '../config.php';
 
-$sql = "SELECT * FROM management_todos  ORDER BY id ASC";
+$sql = "SELECT * FROM todos  ORDER BY id ASC";
 $stmt = $pdo->prepare($sql);
 $stmt->execute();
 $results = $stmt->fetchAll(PDO::FETCH_ASSOC);

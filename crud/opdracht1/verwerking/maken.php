@@ -2,7 +2,7 @@
 
 require_once '../config.php';
 
-$sql = "INSERT INTO management_todos 
+$sql = "INSERT INTO todos 
         (id, title, description, is_completed, due_date, created_at, updated_at) 
         VALUES (NULL, :title, :description, :is_completed, :due_date, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)";
 
