@@ -1,7 +1,15 @@
 <?php
+// Load constants
+require_once __DIR__ . '/config/constants.php';
 
-return
-[
+// Extract host and port from DB_HOST (e.g., "localhost:3306")
+$host = DB_HOST;
+$port = DB_PORT;
+if (strpos($host, ':') !== false) {
+    list($host, $port) = explode(':', $host, 2);
+}
+
+return [
     'paths' => [
         'migrations' => '%%PHINX_CONFIG_DIR%%/db/migrations',
         'seeds' => '%%PHINX_CONFIG_DIR%%/db/seeds'
@@ -11,11 +19,11 @@ return
         'default_environment' => 'development',
         'development' => [
             'adapter' => 'mysql',
-            'host' => getenv('DB_HOST') ?: 'localhost',
-            'name' => getenv('DB_NAME'),
-            'user' => getenv('DB_USER') ?: 'root',
-            'pass' => getenv('DB_PASSWORD') ?: '',
-            'port' => '3306',
+            'host' => $host,
+            'name' => DB_NAME,
+            'user' => DB_USER,
+            'pass' => DB_PASSWORD,
+            'port' => $port,
             'charset' => 'utf8mb4',
         ],
     ],
