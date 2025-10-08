@@ -2,8 +2,8 @@
 
 $server = 'localhost:3306';
 $dbName = '102376_PROGRAM2';
-$username = '102376_1';
-$password = 'N4Ep?9X^ytzipxx7';
+$username = '102376_3';
+$password = 'SkS~47~K5tmgkcws';
 
 $options = [
     PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
