@@ -43,11 +43,11 @@ class UserController
     public function dashboard(): void
     {
         if (!$this->authService->isAuthenticated()) {
-            header('Location: /login.php');
+            header('Location: login.php');
             exit();
         }
 
         $username = $this->getCurrentUser();
-        require_once __DIR__ . '/../Views/auth/dashboard_view.php';
+        require_once __DIR__ . '/../Views/dashboard_view.php';
     }
 }

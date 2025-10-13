@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - Todos</title>
-    <link rel="stylesheet" href="/assets/css/global.css">
+    <link rel="stylesheet" href="assets/css/global.css">
 </head>
 <body>
     <main>
@@ -16,7 +16,7 @@
             </div>
         <?php endif; ?>
         
-        <form action="/login.php" method="POST">
+        <form action="login.php" method="POST">
             <div>
                 <label for="username">Username:</label>
                 <input type="text" id="username" name="username" required>
@@ -29,7 +29,7 @@
         </form>
         
         <p class="text-center mt-20">
-            Don't have an account? <a href="/register.php">Register here</a>
+            Don't have an account? <a href="register.php">Register here</a>
         </p>
     </main>
 </body>
