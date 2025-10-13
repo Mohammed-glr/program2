@@ -14,7 +14,7 @@ class Connection {
 
         if (self::$instance === null) {
             try {
-                self::$instance = new PDO("mysql:host=$server;dbname=$dbName;charset=utf8mb4", $DBusername, $password, $options);
+                self::$instance = new PDO("mysql:host=$server;dbname=$dbName", $DBusername, $password, $options);
                 self::$instance->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             } catch (PDOException $e) {
                 die("Connection failed: " . $e->getMessage() . "<br><br>Please check your database credentials in config/config.php");

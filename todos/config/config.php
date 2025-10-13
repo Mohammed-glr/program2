@@ -3,8 +3,8 @@
 
 $server = 'localhost:3306';
 $dbName = 'MANAGEMENT_TODO';
-$DBusername = '102376_4';
-$password = '5KJt%Oze8y$nrg0d';
+$DBusername = '102376_5';
+$password = '!wxf3ByTqet?R2a4';
 
 $options = [
     PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
