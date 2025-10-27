@@ -30,7 +30,7 @@
             </div>
             <div class="action-links">
                 <button type="submit">Opslaan</button>
-                <a href="../overview_view.php">Annuleren</a>
+                <a href="dashboard.php">Annuleren</a>
             </div>
         </form>
     </main>

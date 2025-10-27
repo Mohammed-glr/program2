@@ -36,10 +36,9 @@
                                 <td><?= htmlspecialchars($todo->getCreatedAt()) ?></td>
                                 <td><?= $todo->isCompleted() ? 'Afgerond' : 'Open' ?></td>
                                 <td>
-                                    <a href="/update.php?id=<?= $todo->getId() ?>" class="action-link">Bewerken</a>
-                                    <a href="/delete.php?id=<?= $todo->getId() ?>" class="action-link delete">Verwijderen</a>
-                                    
-                                </td>
+                                    <a href="update.php?id=<?= $todo->getId() ?>" class="action-link">Bewerken</a>
+                                    <a href="delete.php?id=<?= $todo->getId() ?>" class="action-link delete">Verwijderen</a>
+                                    <a href="read.php?id=<?= $todo->getId() ?>" class="action-link">Bekijken</a>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
