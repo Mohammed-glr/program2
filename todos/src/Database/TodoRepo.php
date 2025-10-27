@@ -7,7 +7,7 @@ class TodoRepository
 {
     private PDO $pdo;
 
-    public function __condtruct()
+    public function __construct()
     {
         $this->pdo = Connection::getInstance();
     }

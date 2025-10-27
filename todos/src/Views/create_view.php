@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nieuwe Todo</title>
-    <link rel="stylesheet" href="assets/css/global.css">
+    <link rel="stylesheet" href="../../public/assets/css/global.css">
 </head>
 <body>
     <main>
         <h1>Nieuwe Todo aanmaken</h1>
-        <form method="POST" action="/todo/create.php">
+    <form method="POST" action="create.php">
             <div>
                 <label for="title">Titel</label>
                 <input type="text" id="title" name="title" required>
@@ -30,7 +30,7 @@
             </div>
             <div class="action-links">
                 <button type="submit">Opslaan</button>
-                <a href="/todos/src/Views/todo/overview_view.php">Annuleren</a>
+                <a href="dashboard.php">Annuleren</a>
             </div>
         </form>
     </main>

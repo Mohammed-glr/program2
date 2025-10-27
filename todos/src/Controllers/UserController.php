@@ -48,6 +48,17 @@ class UserController
         }
 
         $username = $this->getCurrentUser();
+
+        require_once __DIR__ . '/TodoController.php';
+        require_once __DIR__ . '/../Database/UserRepo.php';
+        $userRepo = new UserRepository();
+        $user = $userRepo->findByUsername($username);
+        $todos = [];
+        if ($user) {
+            $todoController = new TodoController();
+            $todos = $todoController->getTodosByUserId($user->getId());
+        }
+
         require_once __DIR__ . '/../Views/dashboard_view.php';
     }
 }

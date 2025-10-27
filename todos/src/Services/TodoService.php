@@ -1,7 +1,8 @@
 <?php
 
 require_once __DIR__ . '/../../config/Connection.php';
-require_once __DIR__ . '/../Models/Todo.php';
+require_once __DIR__ . '/../Database/TodoRepo.php';
+
 
 class TodoService
 {

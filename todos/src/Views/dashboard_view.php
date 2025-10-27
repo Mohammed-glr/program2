@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,13 +31,13 @@
                     <?php if (!empty($todos)): ?>
                         <?php foreach ($todos as $todo): ?>
                             <tr>
-                                <td><?= htmlspecialchars($todo['title']) ?></td>
-                                <td><?= htmlspecialchars($todo['description']) ?></td>
-                                <td><?= htmlspecialchars($todo['due_date']) ?></td>
-                                <td><?= $todo['is_completed'] ? 'Afgerond' : 'Open' ?></td>
+                                <td><?= htmlspecialchars($todo->getTitle()) ?></td>
+                                <td><?= htmlspecialchars($todo->getDescription()) ?></td>
+                                <td><?= htmlspecialchars($todo->getCreatedAt()) ?></td>
+                                <td><?= $todo->isCompleted() ? 'Afgerond' : 'Open' ?></td>
                                 <td>
-                                    <a href="/todo/update.php?id=<?= $todo['id'] ?>" class="action-link">Bewerken</a>
-                                    <a href="/todo/delete.php?id=<?= $todo['id'] ?>" class="action-link delete">Verwijderen</a>
+                                    <a href="update.php?id=<?= $todo->getId() ?>" class="action-link">Bewerken</a>
+                                    <a href="delete.php?id=<?= $todo->getId() ?>" class="action-link delete">Verwijderen</a>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
