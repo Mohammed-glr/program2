@@ -12,9 +12,38 @@
         <div class="success-box">
             <p>Hello, <?php echo htmlspecialchars($username); ?>! You are successfully logged in.</p>
         </div>
-        
-        <div class="text-center mt-20">
-            <a href="logout.php" class="primary-button">Logout</a>
+        <h1>Mijn Todos</h1>
+        <div class="todo-overview">
+            <a href="create.php" class="primary-button">Nieuwe Todo</a>
+            <table class="todo-table">
+                <thead>
+                    <tr>
+                        <th>Titel</th>
+                        <th>Omschrijving</th>
+                        <th>Vervaldatum</th>
+                        <th>Status</th>
+                        <th>Acties</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php if (!empty($todos)): ?>
+                        <?php foreach ($todos as $todo): ?>
+                            <tr>
+                                <td><?= htmlspecialchars($todo['title']) ?></td>
+                                <td><?= htmlspecialchars($todo['description']) ?></td>
+                                <td><?= htmlspecialchars($todo['due_date']) ?></td>
+                                <td><?= $todo['is_completed'] ? 'Afgerond' : 'Open' ?></td>
+                                <td>
+                                    <a href="/todo/update.php?id=<?= $todo['id'] ?>" class="action-link">Bewerken</a>
+                                    <a href="/todo/delete.php?id=<?= $todo['id'] ?>" class="action-link delete">Verwijderen</a>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    <?php else: ?>
+                        <tr><td colspan="5">Geen todos gevonden.</td></tr>
+                    <?php endif; ?>
+                </tbody>
+            </table>
         </div>
     </main>
 </body>
