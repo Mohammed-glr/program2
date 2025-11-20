@@ -9,16 +9,18 @@ CREATE TABLE IF NOT EXISTS users (
 
 CREATE TABLE IF NOT EXISTS digitale_finds (
     id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT,
     title VARCHAR(255) NOT NULL,
     description TEXT,
     type VARCHAR(100),
-    dicover_date DATE,
+    discover_date DATE,
     file_url VARCHAR(255),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-INSERT INTO digitale_finds (title, description, type, dicover_date, file_url) VALUES
+INSERT INTO digitale_finds (title, description, type, discover_date, file_url) VALUES
 ('Eerste Instagram Post', 'social post', 'Een wazige foto van een koffie, gepost op Instagram in 2010 – één van de eerste sociale beelden van de 21e eeuw.', '2125-03-12', 'https://futureheritage.org/vondsten/insta1.jpg'),
 ('HTML Startpagina', 'website', 'Een eenvoudige HTML-pagina met knipperende tekst en een gif-achtergrond, typerend voor de vroege internetjaren.', '2125-03-14', 'https://futureheritage.org/vondsten/startpagina.html'),
 ('Meme: Distracted Boyfriend', 'meme', 'Een populaire internetmeme uit 2017 die menselijke relaties parodieerde met stockfoto’s.', '2125-03-15', 'https://futureheritage.org/vondsten/distracted.jpg'),

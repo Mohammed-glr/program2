@@ -3,6 +3,7 @@
 class DigitaleFind
 {
     private int $id;
+    private ?int $userId;
     private string $title;
     private ?string $description;
     private string $type;
@@ -14,6 +15,7 @@ class DigitaleFind
     
     public function __construct(
         int $id,
+        ?int $userId,
         string $title,
         ?string $description,
         string $type,
@@ -71,5 +73,10 @@ class DigitaleFind
     public function getUpdatedAt(): string
     {
         return $this->updatedAt;
+    }
+
+    public function getUserId(): ?int
+    {
+        return $this->userId;
     }
 }

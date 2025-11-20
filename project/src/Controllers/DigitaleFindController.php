@@ -10,9 +10,9 @@ class DigitaleFindController
         $this->digitaleFindService = new DigitaleFindService();
     }
 
-    public function createDigitaleFind(string $title, ?string $description, string $type, string $discoverDate, string $fileUrl): bool
+    public function createDigitaleFind(string $title, ?string $description, string $type, string $discoverDate, string $fileUrl, ?int $userId = null): bool
     {
-        return $this->digitaleFindService->createDigitaleFind($title, $description, $type, $discoverDate, $fileUrl);
+        return $this->digitaleFindService->createDigitaleFind($title, $description, $type, $discoverDate, $fileUrl, $userId);
     }
 
     public function updateDigitaleFind(int $id, string $title, ?string $description, string $type, string $discoverDate, string $fileUrl): bool
@@ -28,5 +28,14 @@ class DigitaleFindController
     public function getDigitaleFindById(int $id): ?DigitaleFind
     {
         return $this->digitaleFindService->getDigitaleFindById($id);
+    }
+    public function getAllDigitaleFinds(): array
+    {
+        return $this->digitaleFindService->getAllDigitaleFinds();
+    }
+
+    public function getDigitaleFindsByUserId(int $userId): array
+    {
+        return $this->digitaleFindService->getDigitaleFindsByUserId($userId);
     }
 }

@@ -4,7 +4,7 @@ require_once __DIR__ . '/../../config/Connection.php';
 require_once __DIR__ . '/../Database/DigitaleFindRepo.php';
 
 
-class TodoService
+class DigitaleFindService
 {
     private $digitaleFindRepo;
 
@@ -12,9 +12,9 @@ class TodoService
         $this->digitaleFindRepo = new DigitaleFindRepository();
     }
 
-    public function createDigitaleFind(string $title, ?string $description, string $type, string $discoverDate, string $fileUrl): bool
+    public function createDigitaleFind(string $title, ?string $description, string $type, string $discoverDate, string $fileUrl, ?int $userId = null): bool
     {
-        return $this->digitaleFindRepo->createDigitaleFind( $title, $description, $type, $discoverDate, $fileUrl);
+        return $this->digitaleFindRepo->createDigitaleFind( $title, $description, $type, $discoverDate, $fileUrl, $userId);
     }
 
     public function updateDigitaleFind(int $id, string $title, ?string $description, string $type, string $discoverDate, string $fileUrl): bool
@@ -30,5 +30,15 @@ class TodoService
     public function getDigitaleFindById(int $id): ?DigitaleFind
     {
         return $this->digitaleFindRepo->findById($id);
+    }
+
+    public function getAllDigitaleFinds(): array
+    {
+        return $this->digitaleFindRepo->findAll();
+    }
+
+    public function getDigitaleFindsByUserId(int $userId): array
+    {
+        return $this->digitaleFindRepo->findByUserId($userId);
     }
 }

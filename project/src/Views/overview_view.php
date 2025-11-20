@@ -3,42 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Todo Overzicht</title>
+    <title>Digitale Vondsten Overzicht</title>
     <link rel="stylesheet" href="assets/css/global.css">
 </head>
 <body>
     <main>
-        <h1>Mijn Todos</h1>
-        <a href="create.php" class="primary-button">Nieuwe Todo</a>
-        <table class="todo-table">
-            <thead>
-                <tr>
-                    <th>Titel</th>
-                    <th>Omschrijving</th>
-                    <th>Vervaldatum</th>
-                    <th>Status</th>
-                    <th>Acties</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php if (!empty($todos)): ?>
-                    <?php foreach ($todos as $todo): ?>
-                        <tr>
-                            <td><?= htmlspecialchars($todo['title']) ?></td>
-                            <td><?= htmlspecialchars($todo['description']) ?></td>
-                            <td><?= htmlspecialchars($todo['due_date']) ?></td>
-                            <td><?= $todo['is_completed'] ? 'Afgerond' : 'Open' ?></td>
-                            <td>
-                                <a href="/public/todo/update.php?id=<?= $todo['id'] ?>" class="action-link">Bewerken</a>
-                                <a href="/public/todo/delete.php?id=<?= $todo['id'] ?>" class="action-link delete">Verwijderen</a>
-                            </td>
-                        </tr>
-                    <?php endforeach; ?>
-                <?php else: ?>
-                    <tr><td colspan="5">Geen todos gevonden.</td></tr>
-                <?php endif; ?>
-            </tbody>
-        </table>
+        <h1>Mijn Digitale Vondsten</h1>
+        <a href="create.php" class="primary-button">Nieuwe Digitale Vondst</a>
+        <?php if (empty($digitaleFinds)): ?>
+            <p>Je hebt nog geen digitale vondsten. <a href="create.php">Maak er een aan!</a></p>
+        <?php else: ?>
+            <div class="card-container">
+                <?php foreach ($digitaleFinds as $find): ?>
+                    <div class="card">
+                        <h2><?= htmlspecialchars($find->getTitle()); ?></h2>
+                        <p><?= htmlspecialchars($find->getDescription()); ?></p>
+                        <a href="edit.php?id=<?= $find->getId(); ?>">Bewerken</a>
+                        <a href="delete.php?id=<?= $find->getId(); ?>" class="danger">Verwijderen</a>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+        <?php endif; ?>
     </main>
 </body>
 </html>

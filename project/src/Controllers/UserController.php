@@ -1,13 +1,19 @@
 <?php
 
 require_once __DIR__ . '/../Services/AuthService.php';
+require_once __DIR__ . '/DigitaleFindController.php';
+require_once __DIR__ . '/../Database/UserRepo.php';
 
 class UserController
 {
     private $authService;
+    private $digitaleFindController;
+    private $userRepository;
 
     public function __construct() {
         $this->authService = new AuthService();
+        $this->digitaleFindController = new DigitaleFindController();
+        $this->userRepository = new UserRepository();
     }
 
     public function login(string $username, string $password): bool
@@ -42,23 +48,25 @@ class UserController
 
     public function dashboard(): void
     {
+        session_start();
         if (!$this->authService->isAuthenticated()) {
             header('Location: login.php');
             exit();
         }
 
-        $username = $this->getCurrentUser();
-
-        require_once __DIR__ . '/TodoController.php';
-        require_once __DIR__ . '/../Database/UserRepo.php';
-        $userRepo = new UserRepository();
-        $user = $userRepo->findByUsername($username);
-        $todos = [];
-        if ($user) {
-            $todoController = new TodoController();
-            $todos = $todoController->getTodosByUserId($user->getId());
+        $username = $this->authService->getCurrentUser();
+        $digitaleFinds = $this->digitaleFindController->getAllDigitaleFinds();
+        
+        // Build a map of user IDs to usernames
+        $creatorNames = [];
+        foreach ($digitaleFinds as $find) {
+            if ($find->getUserId() && !isset($creatorNames[$find->getUserId()])) {
+                $user = $this->userRepository->findById($find->getUserId());
+                $creatorNames[$find->getUserId()] = $user ? $user->getUsername() : 'Onbekend';
+            }
         }
 
         require_once __DIR__ . '/../Views/dashboard_view.php';
     }
+
 }

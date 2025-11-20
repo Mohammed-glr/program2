@@ -25,6 +25,19 @@ class UserRepository
         return null;
     }
 
+    public function findById(int $id): ?User
+    {
+        $stmt = $this->pdo->prepare('SELECT * FROM users WHERE id = :id');
+        $stmt->execute(['id' => $id]);
+        $row = $stmt->fetch();
+
+        if ($row) {
+            return new User($row['id'], $row['username'], $row['password_hash']);
+        }
+
+        return null;
+    }
+
     public function createUser(string $username, string $passwordHash): bool
     {
         $stmt = $this->pdo->prepare('INSERT INTO users (username, password_hash) VALUES (:username, :password_hash)');
