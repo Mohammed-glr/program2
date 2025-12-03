@@ -26,34 +26,37 @@ class DigitaleFindRepository
                 $row['discover_date'],
                 $row['file_url'],
                 $row['created_at'],
-                $row['updated_at']
+                $row['updated_at'],
+                isset($row['image_filename']) ? $row['image_filename'] : null
             );
         }
         return $results;
     }
 
-    public function createDigitaleFind(string $title, ?string $description, string $type, string $discoverDate, string $fileUrl, ?int $userId = null): bool
+    public function createDigitaleFind(string $title, ?string $description, string $type, string $discoverDate, string $fileUrl, ?int $userId = null, ?string $imageFilename = null): bool
     {
-        $stmt = $this->pdo->prepare('INSERT INTO digitale_finds (user_id, title, description, type, discover_date, file_url, created_at, updated_at) VALUES (:user_id, :title, :description, :type, :discover_date, :file_url, NOW(), NOW())');
+        $stmt = $this->pdo->prepare('INSERT INTO digitale_finds (user_id, title, description, type, discover_date, file_url, image_filename, created_at, updated_at) VALUES (:user_id, :title, :description, :type, :discover_date, :file_url, :image_filename, NOW(), NOW())');
         return $stmt->execute([
             'user_id' => $userId,
             'title' => $title,
             'description' => $description,
             'type' => $type,
             'discover_date' => $discoverDate,
-            'file_url' => $fileUrl
+            'file_url' => $fileUrl,
+            'image_filename' => $imageFilename
         ]);
     }
 
-    public function updateDigitaleFind(int $id, string $title, ?string $description, string $type, string $discoverDate, string $fileUrl): bool
+    public function updateDigitaleFind(int $id, string $title, ?string $description, string $type, string $discoverDate, string $fileUrl, ?string $imageFilename = null): bool
     {
-        $stmt = $this->pdo->prepare('UPDATE digitale_finds SET title = :title, description = :description, type = :type, discover_date = :discover_date, file_url = :file_url, updated_at = NOW() WHERE id = :id');
+        $stmt = $this->pdo->prepare('UPDATE digitale_finds SET title = :title, description = :description, type = :type, discover_date = :discover_date, file_url = :file_url, image_filename = :image_filename, updated_at = NOW() WHERE id = :id');
         return $stmt->execute([
             'title' => $title, 
             'description' => $description, 
             'type' => $type, 
             'discover_date' => $discoverDate, 
             'file_url' => $fileUrl, 
+            'image_filename' => $imageFilename,
             'id' => $id
         ]);
     }
@@ -80,7 +83,8 @@ class DigitaleFindRepository
                 $row['discover_date'],
                 $row['file_url'],
                 $row['created_at'],
-                $row['updated_at']
+                $row['updated_at'],
+                isset($row['image_filename']) ? $row['image_filename'] : null
             );
         }
 
@@ -102,7 +106,8 @@ class DigitaleFindRepository
                 $row['discover_date'],
                 $row['file_url'],
                 $row['created_at'],
-                $row['updated_at']
+                $row['updated_at'],
+                isset($row['image_filename']) ? $row['image_filename'] : null
             );
         }
         return $results;

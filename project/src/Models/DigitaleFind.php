@@ -9,6 +9,7 @@ class DigitaleFind
     private string $type;
     private string $discoverDate;
     private string $fileUrl;
+    private ?string $imageFilename;
     private string $createdAt;
     private string $updatedAt;
 
@@ -22,7 +23,8 @@ class DigitaleFind
         string $discoverDate,
         string $fileUrl,
         string $createdAt,
-        string $updatedAt
+        string $updatedAt,
+        ?string $imageFilename = null
     ) {
         $this->id = $id;
         $this->userId = $userId;
@@ -31,6 +33,7 @@ class DigitaleFind
         $this->type = $type;
         $this->discoverDate = $discoverDate;
         $this->fileUrl = $fileUrl;
+        $this->imageFilename = $imageFilename;
         $this->createdAt = $createdAt;
         $this->updatedAt = $updatedAt;
     }
@@ -63,6 +66,11 @@ class DigitaleFind
     public function getFileUrl(): string
     {
         return $this->fileUrl;
+    }
+
+    public function getImageFilename(): ?string
+    {
+        return $this->imageFilename;
     }
 
     public function getCreatedAt(): string

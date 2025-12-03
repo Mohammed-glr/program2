@@ -12,8 +12,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $type = $_POST['type'] ?? '';
     $discoverDate = $_POST['discover_date'] ?? '';
     $fileUrl = $_POST['file_url'] ?? '';
+    
+    $uploadedFile = null;
+    if (isset($_FILES['image_upload']) && $_FILES['image_upload']['error'] !== UPLOAD_ERR_NO_FILE) {
+        $uploadedFile = $_FILES['image_upload'];
+    }
 
-    $success = $digitaleFindController->updateDigitaleFind($id, $title, $description, $type, $discoverDate, $fileUrl);
+    $success = $digitaleFindController->updateDigitaleFind($id, $title, $description, $type, $discoverDate, $fileUrl, $uploadedFile);
     if ($success) {
         header('Location: dashboard.php');
         exit();

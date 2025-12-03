@@ -10,14 +10,14 @@ class DigitaleFindController
         $this->digitaleFindService = new DigitaleFindService();
     }
 
-    public function createDigitaleFind(string $title, ?string $description, string $type, string $discoverDate, string $fileUrl, ?int $userId = null): bool
+    public function createDigitaleFind(string $title, ?string $description, string $type, string $discoverDate, string $fileUrl, ?int $userId = null, ?array $uploadedFile = null): bool
     {
-        return $this->digitaleFindService->createDigitaleFind($title, $description, $type, $discoverDate, $fileUrl, $userId);
+        return $this->digitaleFindService->createDigitaleFind($title, $description, $type, $discoverDate, $fileUrl, $userId, $uploadedFile);
     }
 
-    public function updateDigitaleFind(int $id, string $title, ?string $description, string $type, string $discoverDate, string $fileUrl): bool
+    public function updateDigitaleFind(int $id, string $title, ?string $description, string $type, string $discoverDate, string $fileUrl, ?array $uploadedFile = null): bool
     {
-        return $this->digitaleFindService->updateDigitaleFind($id, $title, $description, $type, $discoverDate, $fileUrl);
+        return $this->digitaleFindService->updateDigitaleFind($id, $title, $description, $type, $discoverDate, $fileUrl, $uploadedFile);
     }
 
     public function deleteDigitaleFind(int $id): bool
