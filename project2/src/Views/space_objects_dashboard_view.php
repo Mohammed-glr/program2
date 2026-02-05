@@ -11,7 +11,6 @@
         <h1>Ruimteobjecten</h1>
         <div class="action-links">
             <a href="space_objects_create.php">Nieuw Ruimteobject</a>
-            <a href="dashboard.php">Terug naar Digitale Vondsten</a>
         </div>
         <section>
             <h2>Alle Ruimteobjecten</h2>
@@ -22,16 +21,20 @@
             <?php else: ?>
                 <div class="card-container">
                     <?php foreach ($spaceObjects as $object): ?>
-                        <div class="card">
-                            <h3><?= htmlspecialchars($object->getName()) ?></h3>
-                            <p><strong>Beschrijving:</strong> <?= htmlspecialchars($object->getDescription()) ?></p>
-                            <p><strong>Type:</strong> <?= htmlspecialchars($object->getType()) ?></p>
-                            <p><strong>Ontdekkingsdatum:</strong> <?= htmlspecialchars($object->getDiscoveredDate()) ?></p>
-                            <p><strong>Bestands-URL:</strong> <a href="<?= htmlspecialchars($object->getFileUrl()) ?>" target="_blank">Bekijk bestand</a></p>
-                            <div class="card-actions">
-                                <a href="space_objects_read.php?id=<?= $object->getId() ?>">Bekijken</a>
-                                <a href="space_objects_update.php?id=<?= $object->getId() ?>">Bewerken</a>
-                                <a href="space_objects_delete.php?id=<?= $object->getId() ?>" class="danger">Verwijderen</a>
+                        <div class="card space-object-card" onclick="window.location.href='space_objects_read.php?id=<?= $object->getId() ?>'">
+                            <?php if ($object->getImageFilename()): ?>
+                                <img src="image.php?file=<?= urlencode($object->getImageFilename()); ?>&op=resize&w=400&h=300" 
+                                     alt="<?= htmlspecialchars($object->getName()) ?>">
+                            <?php elseif ($object->getFileUrl()): ?>
+                                <img src="<?= htmlspecialchars($object->getFileUrl()) ?>" 
+                                     alt="<?= htmlspecialchars($object->getName()) ?>"
+                                     onerror="this.parentElement.innerHTML='<div class=\'no-image\'>Geen afbeelding beschikbaar</div>'">
+                            <?php else: ?>
+                                <div class="no-image">Geen afbeelding beschikbaar</div>
+                            <?php endif; ?>
+                            <div class="space-object-overlay">
+                                <h3 style="margin: 0 0 5px 0;"><?= htmlspecialchars($object->getName()) ?></h3>
+                                <p style="margin: 0; font-size: 0.9em;"><?= htmlspecialchars($object->getType()) ?></p>
                             </div>
                         </div>
                     <?php endforeach; ?>

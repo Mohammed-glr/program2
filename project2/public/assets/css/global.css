@@ -1,8 +1,8 @@
 
 
 :root {
-    --primary-color: #4CAF50;
-    --primary-hover: #45a049;
+    --primary-color: #0b0452;
+    --primary-hover: #0d0570;
     --secondary-color: #f44336;
     --background-color: #0a0a0a;
     --card-background: #1a1a1a;
@@ -10,7 +10,7 @@
     --text-color: #e0e0e0;
     --text-secondary: #b0b0b0;
     --border-color: #333333;
-    --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    --font-family: impact, sans-serif;
 }
 
 * {
@@ -62,8 +62,8 @@ section {
 
 }
 .card-container {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid; 
+    grid-template-columns: repeat(6, 1fr);
     gap: 20px;
     justify-content: center;
 }
@@ -74,7 +74,7 @@ section {
     border-radius: 12px;
     padding: 20px;
     height: 100%;
-    width: 500px;
+    width: 300px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
@@ -260,3 +260,84 @@ main .success-box {
     margin: 0 auto 16px;
     text-align: center;
 }
+
+ .space-object-card {
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+        .space-object-card:hover {
+            transform: scale(1.05);
+        }
+        .space-object-card img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            display: block;
+        }
+        .space-object-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            color: var(--text-color);
+            padding: 15px;
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+        .space-object-card:hover .space-object-overlay {
+            opacity: 1;
+        }
+        .no-image {
+            width: 100%;
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--card-background);
+            color: var(--text-secondary);
+        }
+
+   .image-preview {
+            max-width: 300px;
+            margin-top: 10px;
+            display: none;
+        }
+        .image-preview.active {
+            display: block;
+        }
+        .image-preview img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            border-bottom: 2px solid var(--border-color);
+        }
+        .tab-button {
+            padding: 10px 20px;
+            border: none;
+            background: none;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            font-weight: bold;
+        }
+        .tab-button.active {
+            border-bottom-color: var(--primary-color);
+            color: var(--primary-color);
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+        }

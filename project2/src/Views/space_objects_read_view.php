@@ -23,7 +23,7 @@
                     <div class="action-links">
                         <a href="space_objects_update.php?id=<?= $spaceObject->getId(); ?>">Bewerken</a>
                         <a href="space_objects_delete.php?id=<?= $spaceObject->getId(); ?>" class="danger">Verwijderen</a>
-                        <a href="space_objects_dashboard.php">Terug naar Dashboard</a>
+                        <a href="space_objects_dashboard.php">Terug</a>
                     </div>
                 </div>
             </div>
