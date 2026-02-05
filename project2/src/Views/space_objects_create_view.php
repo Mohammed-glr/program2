@@ -5,49 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nieuw Ruimteobject aanmaken</title>
     <link rel="stylesheet" href="assets/css/global.css">
-    <style>
-        .image-preview {
-            max-width: 300px;
-            margin-top: 10px;
-            display: none;
-        }
-        .image-preview.active {
-            display: block;
-        }
-        .image-preview img {
-            max-width: 100%;
-            height: auto;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-        .form-group {
-            margin-bottom: 20px;
-        }
-        .tabs {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 20px;
-            border-bottom: 2px solid #ddd;
-        }
-        .tab-button {
-            padding: 10px 20px;
-            border: none;
-            background: none;
-            cursor: pointer;
-            border-bottom: 3px solid transparent;
-            font-weight: bold;
-        }
-        .tab-button.active {
-            border-bottom-color: #007bff;
-            color: #007bff;
-        }
-        .tab-content {
-            display: none;
-        }
-        .tab-content.active {
-            display: block;
-        }
-    </style>
 </head>
 <body>
     <main>
@@ -80,7 +37,6 @@
                 <input type="date" id="discovered_date" name="discovered_date" required>
             </div>
 
-            <!-- Image input tabs -->
             <fieldset class="form-group">
                 <legend>Afbeelding</legend>
                 
@@ -89,7 +45,6 @@
                     <button type="button" class="tab-button" onclick="switchTab('url')">Afbeelding URL</button>
                 </div>
 
-                <!-- Upload tab -->
                 <div id="upload" class="tab-content active">
                     <div class="form-group">
                         <label for="image_upload">Selecteer afbeelding</label>
@@ -101,7 +56,6 @@
                     </div>
                 </div>
 
-                <!-- URL tab -->
                 <div id="url" class="tab-content">
                     <div class="form-group">
                         <label for="file_url">Afbeelding URL</label>
@@ -123,7 +77,6 @@
 
     <script>
         function switchTab(tabName) {
-            // Hide all tabs
             document.querySelectorAll('.tab-content').forEach(tab => {
                 tab.classList.remove('active');
             });
@@ -131,7 +84,6 @@
                 btn.classList.remove('active');
             });
 
-            // Show selected tab
             document.getElementById(tabName).classList.add('active');
             event.target.classList.add('active');
         }

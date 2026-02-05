@@ -11,7 +11,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $discoveredDate = $_POST['discovered_date'] ?? '';
     $fileUrl = $_POST['file_url'] ?? '';
     
-    // Handle image upload if provided
     $uploadedFile = null;
     if (isset($_FILES['image_upload']) && $_FILES['image_upload']['error'] !== UPLOAD_ERR_NO_FILE) {
         $uploadedFile = $_FILES['image_upload'];

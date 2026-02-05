@@ -341,3 +341,133 @@ main .success-box {
         .tab-content.active {
             display: block;
         }
+
+
+.space-object-card {
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .space-object-card:hover {
+            transform: scale(1.05);
+        }
+        .space-object-card img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            display: block;
+        }
+        .space-object-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            color: white;
+            padding: 15px;
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+        .space-object-card:hover .space-object-overlay {
+            opacity: 1;
+        }
+        .no-image {
+            width: 100%;
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--card-background);
+            color: var(--text-secondary);
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.6);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+        .modal.active {
+            display: flex;
+        }
+        .modal-content {
+            background: var(--card-background);
+            border-radius: 8px;
+            max-width: 600px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+        .modal-header {
+            padding: 20px;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .modal-header h2 {
+            margin: 0;
+        }
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--text-secondary);
+        }
+        .modal-close:hover {
+            color: var(--text-color);
+        }
+        .modal-body {
+            padding: 20px;
+        }
+        .modal-body p {
+            margin: 0 0 15px 0;
+        }
+        .modal-body strong {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .modal-actions {
+            padding: 20px;
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            gap: 10px;
+        }
+        .modal-actions a,
+        .modal-actions button {
+            flex: 1;
+            padding: 10px;
+            text-align: center;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        .modal-actions a:first-child {
+            background: var(--primary-color);
+            color: var(--text-color);
+        }
+        .modal-actions a:first-child:hover {
+            background: var(--primary-hover);
+        }
+        .modal-actions a.danger {
+            background: var(--danger-color);
+            color: var(--text-color);
+        }
+        .modal-actions a.danger:hover {
+            background: #c82333;
+        }
+        .modal-actions button {
+            background:var(--card-background);
+            color: var(--text-color);
+        }
+        .modal-actions button:hover {
+            background: var(--card-hover-background);
+        }
