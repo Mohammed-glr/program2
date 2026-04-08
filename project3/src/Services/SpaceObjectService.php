@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 require_once __DIR__ . '/../../config/Connection.php';
 require_once __DIR__ . '/../Database/SpaceObjectsRepo.php';
 require_once __DIR__ . '/ImageService.php';
@@ -7,8 +9,8 @@ require_once __DIR__ . '/ImageService.php';
 
 class SpaceObjectService
 {
-    private $spaceObjectRepo;
-    private $imageService;
+    private SpaceObjectRepository $spaceObjectRepo;
+    private ImageService $imageService;
 
     public function __construct() {
         $this->spaceObjectRepo = new SpaceObjectRepository();
@@ -33,7 +35,13 @@ class SpaceObjectService
             }
         }
 
-        return $this->spaceObjectRepo->createSpaceObject($name, $description, $type, $discoveredDate, $fileUrl, $imageFilename);
+        try {
+            $spaceObject = SpaceObjects::forCreate($name, $description, $type, $discoveredDate, $fileUrl, $imageFilename);
+        } catch (InvalidArgumentException $exception) {
+            return false;
+        }
+
+        return $this->spaceObjectRepo->createSpaceObject($spaceObject);
     }
 
     public function updateSpaceObject(int $id, string $name, ?string $description, string $type, string $discoveredDate, string $fileUrl, ?array $uploadedFile = null): bool
@@ -63,7 +71,18 @@ class SpaceObjectService
             }
         }
 
-        return $this->spaceObjectRepo->updateSpaceObject($id, $name, $description, $type, $discoveredDate, $fileUrl, $imageFilename);
+        try {
+            $spaceObject->setName($name);
+            $spaceObject->setDescription($description);
+            $spaceObject->setType($type);
+            $spaceObject->setDiscoveredDate($discoveredDate);
+            $spaceObject->setFileUrl($fileUrl);
+            $spaceObject->setImageFilename($imageFilename);
+        } catch (InvalidArgumentException $exception) {
+            return false;
+        }
+
+        return $this->spaceObjectRepo->updateSpaceObject($spaceObject);
     }
 
     public function deleteSpaceObject(int $id): bool

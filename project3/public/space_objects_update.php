@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 require_once __DIR__ . '/../src/Controllers/SpaceObjectController.php';
 
 $spaceObjectController = new SpaceObjectController();
@@ -41,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $spaceObject) {
     );
     
     if ($success) {
-        header('Location: space_objects_read.php?id=' . $id);
+        header('Location: space_objects_dashboard.php?id=' . $id);
         exit();
     } else {
         $error = "Failed to update space object.";

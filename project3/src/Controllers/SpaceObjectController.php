@@ -1,10 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 require_once __DIR__ . '/../Services/SpaceObjectService.php';
 
 class SpaceObjectController
 {
-    private $spaceObjectService;
+    private SpaceObjectService $spaceObjectService;
 
     public function __construct() {
         $this->spaceObjectService = new SpaceObjectService();

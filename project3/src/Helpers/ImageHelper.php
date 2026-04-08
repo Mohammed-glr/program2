@@ -1,15 +1,19 @@
 <?php
 
+declare(strict_types=1);
+
 
 class ImageHelper
 {
+    private static string $imageEndpoint = '/project3/public/image.php';
+
     public static function imageUrl(?string $filename, ?int $width = null, ?int $height = null, ?string $filter = null, int $quality = 85): string
     {
         if (!$filename) {
             return self::placeholderUrl($width, $height);
         }
 
-        $url = '/project/public/image.php?file=' . urlencode($filename);
+        $url = self::$imageEndpoint . '?file=' . urlencode($filename);
 
         if ($width && $height) {
             $url .= '&op=resize&w=' . (int)$width . '&h=' . (int)$height;
@@ -60,5 +64,19 @@ class ImageHelper
     public static function hasImage(?string $filename): bool
     {
         return !empty($filename) && is_string($filename) && strlen($filename) > 0;
+    }
+
+    public static function thumbnailUrl(?string $filename, int $width = 300, int $height = 300): string
+    {
+        return self::imageUrl($filename, $width, $height);
+    }
+
+    public static function placeholderUrl(?int $width = null, ?int $height = null): string
+    {
+        $label = 'Geen afbeelding';
+        $resolvedWidth = $width ?? 300;
+        $resolvedHeight = $height ?? 200;
+
+        return 'https://placehold.co/' . $resolvedWidth . 'x' . $resolvedHeight . '?text=' . rawurlencode($label);
     }
 }

@@ -1,3 +1,4 @@
+<?php declare(strict_types=1); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -96,7 +97,7 @@
                     <?php if ($spaceObject->getImageFilename()): ?>
                         <div class="current-image">
                             <p><strong>Huidige afbeelding:</strong></p>
-                            <img src="/project2/public/image.php?file=<?= urlencode($spaceObject->getImageFilename()); ?>&op=resize&w=300&h=300" 
+                               <img src="image.php?file=<?= urlencode($spaceObject->getImageFilename()); ?>&w=300&h=300" 
                                  alt="<?= htmlspecialchars($spaceObject->getName()); ?>">
                         </div>
                     <?php endif; ?>

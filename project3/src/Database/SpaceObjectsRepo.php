@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 require_once __DIR__ . '/../../config/Connection.php';
 require_once __DIR__ . '/../Models/SpaceObjects.php';
 
@@ -17,44 +19,35 @@ class SpaceObjectRepository
         $stmt = $this->pdo->query('SELECT * FROM SpaceObjects');
         $results = [];
         while ($row = $stmt->fetch()) {
-            $results[] = new SpaceObjects(
-                (int)$row['id'],
-                $row['name'],
-                $row['description'],
-                $row['type'],
-                $row['discovered_date'],
-                $row['file_url'],
-                $row['created_at'],
-                isset($row['image_filename']) ? $row['image_filename'] : null
-            );
+            $results[] = SpaceObjects::fromDatabaseRow($row);
         }
         return $results;
     }
 
-    public function createSpaceObject(string $name, ?string $description, string $type, string $discoveredDate, string $fileUrl, ?string $imageFilename = null): bool
+    public function createSpaceObject(SpaceObjects $spaceObject): bool
     {
         $stmt = $this->pdo->prepare('INSERT INTO SpaceObjects (name, description, type, discovered_date, file_url, image_filename, created_at) VALUES (:name, :description, :type, :discovered_date, :file_url, :image_filename, NOW())');
         return $stmt->execute([
-            'name' => $name,
-            'description' => $description,
-            'type' => $type,
-            'discovered_date' => $discoveredDate,
-            'file_url' => $fileUrl,
-            'image_filename' => $imageFilename
+            'name' => $spaceObject->getName(),
+            'description' => $spaceObject->getDescription(),
+            'type' => $spaceObject->getType(),
+            'discovered_date' => $spaceObject->getDiscoveredDate(),
+            'file_url' => $spaceObject->getFileUrl(),
+            'image_filename' => $spaceObject->getImageFilename()
         ]);
     }
 
-    public function updateSpaceObject(int $id, string $name, ?string $description, string $type, string $discoveredDate, string $fileUrl, ?string $imageFilename = null): bool
+    public function updateSpaceObject(SpaceObjects $spaceObject): bool
     {
         $stmt = $this->pdo->prepare('UPDATE SpaceObjects SET name = :name, description = :description, type = :type, discovered_date = :discovered_date, file_url = :file_url, image_filename = :image_filename WHERE id = :id');
         return $stmt->execute([
-            'name' => $name, 
-            'description' => $description, 
-            'type' => $type, 
-            'discovered_date' => $discoveredDate, 
-            'file_url' => $fileUrl, 
-            'image_filename' => $imageFilename,
-            'id' => $id
+            'name' => $spaceObject->getName(),
+            'description' => $spaceObject->getDescription(),
+            'type' => $spaceObject->getType(),
+            'discovered_date' => $spaceObject->getDiscoveredDate(),
+            'file_url' => $spaceObject->getFileUrl(),
+            'image_filename' => $spaceObject->getImageFilename(),
+            'id' => $spaceObject->getId()
         ]);
     }
 
@@ -71,16 +64,7 @@ class SpaceObjectRepository
         $row = $stmt->fetch();
 
         if ($row) {
-            return new SpaceObjects(
-                (int)$row['id'],
-                $row['name'],
-                $row['description'],
-                $row['type'],
-                $row['discovered_date'],
-                $row['file_url'],
-                $row['created_at'],
-                isset($row['image_filename']) ? $row['image_filename'] : null
-            );
+            return SpaceObjects::fromDatabaseRow($row);
         }
 
         return null;
@@ -93,16 +77,7 @@ class SpaceObjectRepository
         $stmt->execute(['query' => $searchQuery]);
         $results = [];
         while ($row = $stmt->fetch()) {
-            $results[] = new SpaceObjects(
-                (int)$row['id'],
-                $row['name'],
-                $row['description'],
-                $row['type'],
-                $row['discovered_date'],
-                $row['file_url'],
-                $row['created_at'],
-                isset($row['image_filename']) ? $row['image_filename'] : null
-            );
+            $results[] = SpaceObjects::fromDatabaseRow($row);
         }
         return $results;
     }
@@ -113,16 +88,7 @@ class SpaceObjectRepository
         $stmt->execute(['type' => $type]);
         $results = [];
         while ($row = $stmt->fetch()) {
-            $results[] = new SpaceObjects(
-                (int)$row['id'],
-                $row['name'],
-                $row['description'],
-                $row['type'],
-                $row['discovered_date'],
-                $row['file_url'],
-                $row['created_at'],
-                isset($row['image_filename']) ? $row['image_filename'] : null
-            );
+            $results[] = SpaceObjects::fromDatabaseRow($row);
         }
         return $results;
     }

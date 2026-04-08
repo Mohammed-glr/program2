@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 class ImageService
 {
     private string $uploadDir = __DIR__ . '/../../public/assets/uploads';

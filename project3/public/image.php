@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 $filename = $_GET['file'] ?? null;
 $width = isset($_GET['w']) ? (int)$_GET['w'] : null;
 $height = isset($_GET['h']) ? (int)$_GET['h'] : null;
