@@ -10,6 +10,10 @@
     <div class="container">
         <h1>Opdracht 2: TransportRide Child-Class Test Cases</h1>
         <p><strong>Studentenummer:</strong> 102376 | <strong>Child-class type:</strong> TransportRide (erft van LegoAttraction)</p>
+        <p>
+            <a href="opdracht1.php">Opdracht 1</a> |
+            <a href="opdracht2.php">Opdracht 2</a>
+        </p>
 
         <?php
             require_once __DIR__ . '/../src/Services/TransportRide.php';
